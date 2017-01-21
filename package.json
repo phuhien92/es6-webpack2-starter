@@ -1,0 +1,33 @@
+{
+  "name": "es6-webpack-starter",
+  "version": "0.0.1",
+  "description": "A starter project to work with vanilla ES6 using Babel and Webpack 2",
+  "main": "index.js",
+  "repository": {},
+  "author": "Paulo Chaves <opaulochaves@mail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --progress --profile --colors",
+    "build": "rm -rf ./dist && NODE_ENV=production webpack --progress --profile --colors",
+    "preview": "NODE_ENV=production webpack-dev-server --progress --profile --colors"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "beta",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.26.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0"
+  },
+  "dependencies": {}
+}
