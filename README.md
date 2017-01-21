@@ -18,7 +18,7 @@ This starter kit comes with:
 - [css-loader](https://github.com/webpack/css-loader) and [style-loader](https://github.com/webpack/style-loader) to loader your css and put into your `.js` bundle when in dev mode or load the css and put it in a separate folder when in production mode with [extract-text-webpack-plugin](https://github.com/webpack/extract-text-webpack-plugin)
 - [url-loader](https://github.com/webpack/url-loader) used to load your images into your bundle. This plugin can return a Data Url if the file is smaller than a byte limit. That means if you have an image file which is less than a size lime you have specified on your webpack config that assets gets bundled inline, otherwise it is copied to to your dist folder with [file-loader](https://github.com/webpack/file-loader). Hence, when you add `url-loader` to your `devDependencies` you also have to add `file-loader` cuz it's a peer dependencie.
 
-### Gettin Started
+### Getting Started
 
 To get started, clone the repo and run `yarn install`, or `npm install` if you are using `npm`. I recommend [Yarn](https://yarnpkg.com/) because it's fast than npm and also enables you to have a cache on your machine so you don't waste your bandwidth having to download everything whenever your run `npm install`.
 
