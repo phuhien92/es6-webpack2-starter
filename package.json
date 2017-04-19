@@ -11,9 +11,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --progress --profile --colors",
-    "build": "rm -rf ./dist && NODE_ENV=production webpack --progress --profile --colors",
-    "preview": "NODE_ENV=production webpack-dev-server --progress --profile --colors"
+    "start": "webpack-dev-server --colors",
+    "build": "rm -rf ./dist && NODE_ENV=production webpack --colors",
+    "preview": "NODE_ENV=production webpack-dev-server --colors"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
