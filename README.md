@@ -24,7 +24,7 @@ To get started, clone the repo and run `yarn install`, or `npm install` if you a
 
 Get the latest snapshot, or the entire repo if you remove `--depth=1`
 ```sh
-git clone --depth=1 git@github.com:oPauloChaves/es6-webpack2-starter.git project-name
+git clone --depth=1 https://github.com/oPauloChaves/es6-webpack2-starter.git project-name
 cd project-name
 yarn install
 # or
