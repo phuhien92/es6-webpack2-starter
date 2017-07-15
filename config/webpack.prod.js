@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
 
 const srcDir = path.resolve(__dirname, '..', 'src')
 const distDir = path.resolve(__dirname, '..', 'dist')
@@ -80,7 +81,7 @@ module.exports = {
           // if less, bundle the asset inline, if greater, copy it to the dist/assets
           // folder using file-loader
           use: [
-            'url-loader?limit=10000&name=assets/[name]-[hash:8].[ext]'
+            'url-loader?limit=10240&name=assets/[name]-[hash:8].[ext]'
           ]
         }
       }
@@ -135,6 +136,13 @@ module.exports = {
     new ExtractTextPlugin({
       filename: '[name].[contenthash:8].css',
       allChunks: true
+    }),
+
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
+      threshold: 10240 // Only assets bigger than this size are processed
     })
   ]
 }
