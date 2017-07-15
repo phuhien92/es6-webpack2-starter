@@ -1,10 +1,10 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const srcDir = path.resolve(__dirname, '..', 'src');
-const distDir = path.resolve(__dirname, '..', 'dist');
+const srcDir = path.resolve(__dirname, '..', 'src')
+const distDir = path.resolve(__dirname, '..', 'dist')
 
 module.exports = {
   // Where to fine the source code
@@ -14,7 +14,7 @@ module.exports = {
   devtool: 'hidden-source-map',
 
   entry: [
-    './index.js',
+    './index.js'
   ],
 
   output: {
@@ -27,7 +27,7 @@ module.exports = {
 
     // Wherever resource (css, js, img) you call <script src="..."></script>,
     // or css, or img use this path as the root
-    publicPath: '/',
+    publicPath: '/'
 
     // At some point you'll have to debug your code, that's why I'm giving you
     // for free a source map file to make your life easier
@@ -49,31 +49,49 @@ module.exports = {
       {
         // Webpack, when walking down the tree, whenever you see `.js` file use babel to transpile
         // the code to ES5. I don't want you to look into the node_modules folder.
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [
-          'babel-loader',
+          'babel-loader'
         ],
+        include: srcDir
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         exclude: /node_modules/,
-        // It's production mode and I don't want inline CSS so put all my CSS into a file
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader',
-        }),
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            { loader: 'css-loader', options: { minimize: true } },
+            // 'postcss-loader',
+            'sass-loader'
+          ]
+        })
       },
+      {
+        test: /\.(eot?.+|svg?.+|ttf?.+|otf?.+|woff?.+|woff2?.+)$/,
+        use: 'file-loader?name=assets/[name]-[hash].[ext]'
+      },
+      // {
+      //   test: /\.css$/,
+      //   exclude: /node_modules/,
+      //   // It's production mode and I don't want inline CSS so put all my CSS into a file
+      //   loader: ExtractTextPlugin.extract({
+      //     fallbackLoader: 'style-loader',
+      //     loader: 'css-loader'
+      //   })
+      // },
       {
         test: /\.(jpg|jpeg|png|gif|ico|svg)$/,
         loader: 'url-loader',
         query: {
-          // if less, bundle the asset inline, if greater, copy it to the dist/assets folder using file-loader
-          limit: 10000,
-
-          name: 'assets/[name].[hash].[ext]'
-        },
-      },
+          // if less, bundle the asset inline, if greater, copy it to the dist/assets
+          // folder using file-loader
+          use: [
+            'url-loader?limit=20480&name=assets/[name]-[hash].[ext]'
+          ]
+        }
+      }
     ]
   },
 
@@ -82,8 +100,8 @@ module.exports = {
 
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
+        NODE_ENV: JSON.stringify('production')
+      }
     }),
 
     new webpack.LoaderOptionsPlugin({
@@ -115,6 +133,9 @@ module.exports = {
     }),
 
     // Put all css code in this file
-    new ExtractTextPlugin('app-[hash].css'),
-  ],
-};
+    new ExtractTextPlugin({
+      filename: '[name].[contenthash].css',
+      allChunks: true
+    })
+  ]
+}

@@ -1,6 +1,6 @@
-import './app.css';
+import './styles/core.scss'
 
-import jsImg from './assets/js.png';
+import jsImg from './assets/js.png'
 
 const page = `
 <div class="main">
@@ -10,6 +10,6 @@ const page = `
   </div>
   <h2>Paulo Chaves from Piaui, Brazil</h2>
 </div>
-`;
+`
 
-document.getElementById('root').innerHTML = page;
+document.getElementById('root').innerHTML = page
