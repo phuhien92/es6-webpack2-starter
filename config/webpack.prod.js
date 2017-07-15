@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const PreloadWebpackPlugin = require('preload-webpack-plugin')
-const autoprefixer = require('autoprefixer')
 
 const srcDir = path.resolve(__dirname, '..', 'src')
 const distDir = path.resolve(__dirname, '..', 'dist')
@@ -69,9 +68,23 @@ module.exports = {
           use: [
             {
               loader: 'css-loader',
-              options: { minimize: true, modules: true }
+              options: {
+                minimize: true,
+                modules: true,
+                sourceMap: true
+              }
             },
-            // 'postcss-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [require('autoprefixer')({
+                  browsers: [
+                    'last 3 version',
+                    'ie >= 10' // supports IE from version 10 onwards
+                  ]
+                })]
+              }
+            },
             'sass-loader'
           ]
         })
@@ -137,20 +150,6 @@ module.exports = {
       },
       output: {
         comments: false
-      }
-    }),
-
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: [
-          autoprefixer({
-            browsers: [
-              'last 3 version',
-              'ie >= 10' // supports IE from version 10 onwards
-            ]
-          })
-        ],
-        context: path.resolve(srcDir, 'styles')
       }
     }),
 
