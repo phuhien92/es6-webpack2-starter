@@ -79,7 +79,15 @@ module.exports = {
           ]
         })
       },
-      { test: /\.hbs$/, loader: 'handlebars-loader' },
+      {
+        test: /\.hbs$/,
+        loader: 'handlebars-loader',
+        query: {
+          partialDirs: [
+            path.join(srcDir, 'templates', 'partials')
+          ]
+        }
+      },
       {
         test: /\.(eot?.+|svg?.+|ttf?.+|otf?.+|woff?.+|woff2?.+)$/,
         use: 'file-loader?name=assets/[name].[hash:8].[ext]'
