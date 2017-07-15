@@ -92,3 +92,4 @@ Pull requests are very welcome!
 [Webpack 3 + React — Production build tips](https://medium.com/netscape/webpack-3-react-production-build-tips-d20507dba99a)
 [nwb](https://github.com/insin/nwb)
 [On Webpack and Source Map integration](https://lorefnon.me/2016/12/03/on-webpack-and-source-map-integration.html)
+[Conditional compilation and dead code elimination with webpack](https://www.thomann.io/blog/post/webpack_conditional_compilation_dead_code_elimination)

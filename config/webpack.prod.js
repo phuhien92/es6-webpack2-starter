@@ -38,22 +38,12 @@ module.exports = {
     sourceMapFilename: 'main.[hash:8].map'
   },
 
-  // The devServer config is here to enable you to run the production build. I know you wanna see
-  // the output of this awesome config with me (Webpack 2).
-  devServer: {
-    contentBase: distDir,
-    historyApiFallback: true,
-    port: 3000,
-    compress: true,
-    inline: false
-  },
-
   module: {
     rules: [
       {
         // Webpack, when walking down the tree, whenever you see `.js` file use babel to transpile
         // the code to ES5. I don't want you to look into the node_modules folder.
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         use: [
           'babel-loader'
@@ -117,11 +107,6 @@ module.exports = {
       'NODE_ENV': NODE_ENV,
       '__DEV__': NODE_ENV === 'development',
       '__PROD__': NODE_ENV === 'production'
-    }),
-
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
     }),
 
     new HtmlWebpackPlugin({
