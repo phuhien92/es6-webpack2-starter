@@ -76,6 +76,7 @@ module.exports = {
           'sass-loader'
         ]
       },
+      { test: /\.hbs$/, loader: 'handlebars-loader' },
       {
         test: /\.(eot?.+|svg?.+|ttf?.+|otf?.+|woff?.+|woff2?.+)$/,
         use: 'file-loader?name=assets/[name].[ext]'
@@ -106,8 +107,8 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      // where to find the html template
-      template: path.join(srcDir, 'index.html'),
+      // where to find the handlebars template
+      template: path.join(srcDir, 'index.hbs'),
 
       // where to put the generated file
       path: distDir,
