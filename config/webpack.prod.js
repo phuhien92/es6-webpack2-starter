@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const PreloadWebpackPlugin = require('preload-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 
 const srcDir = path.resolve(__dirname, '..', 'src')
 const distDir = path.resolve(__dirname, '..', 'dist')
@@ -65,7 +66,10 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
-            { loader: 'css-loader', options: { minimize: true } },
+            {
+              loader: 'css-loader',
+              options: { minimize: true, modules: true }
+            },
             // 'postcss-loader',
             'sass-loader'
           ]
@@ -133,6 +137,20 @@ module.exports = {
       }
     }),
 
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [
+          autoprefixer({
+            browsers: [
+              'last 3 version',
+              'ie >= 10'
+            ]
+          })
+        ],
+        context: path.resolve(srcDir, 'styles')
+      }
+    }),
+
     // Put all css code in this file
     new ExtractTextPlugin({
       filename: '[name].[contenthash:8].css',
@@ -149,7 +167,8 @@ module.exports = {
     new PreloadWebpackPlugin({
       rel: 'preload',
       as: 'script',
-      include: 'all'
+      include: 'all',
+      fileBlacklist: [/\.(css|map)$/]
     })
   ]
 }
