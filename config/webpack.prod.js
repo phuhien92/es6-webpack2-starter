@@ -11,7 +11,7 @@ module.exports = {
   context: srcDir,
 
   // No source map for production build
-  devtool: 'hidden-source-map',
+  devtool: 'cheap-module-source-map',
 
   entry: [
     './index.js'
@@ -19,19 +19,20 @@ module.exports = {
 
   output: {
     // The destination file name concatenated with hash (generated whenever you change your code).
-    // The hash is really useful to let the browser knows when it should get a new bundle or use the one in cache
-    filename: 'main-[hash].js',
+    // The hash is really useful to let the browser knows when it should get a new bundle
+    // or use the one in cache
+    filename: 'main.[hash:8].js',
 
     // The destination folder where to put the output bundle
     path: distDir,
 
     // Wherever resource (css, js, img) you call <script src="..."></script>,
     // or css, or img use this path as the root
-    publicPath: '/'
+    publicPath: '/',
 
     // At some point you'll have to debug your code, that's why I'm giving you
     // for free a source map file to make your life easier
-    // sourceMapFilename: 'main-[hash].map',
+    sourceMapFilename: 'main.[hash:8].map'
   },
 
   // The devServer config is here to enable you to run the production build. I know you wanna see
@@ -70,7 +71,7 @@ module.exports = {
       },
       {
         test: /\.(eot?.+|svg?.+|ttf?.+|otf?.+|woff?.+|woff2?.+)$/,
-        use: 'file-loader?name=assets/[name]-[hash].[ext]'
+        use: 'file-loader?name=assets/[name]-[hash:8].[ext]'
       },
       // {
       //   test: /\.css$/,
@@ -88,7 +89,7 @@ module.exports = {
           // if less, bundle the asset inline, if greater, copy it to the dist/assets
           // folder using file-loader
           use: [
-            'url-loader?limit=20480&name=assets/[name]-[hash].[ext]'
+            'url-loader?limit=20480&name=assets/[name]-[hash:8].[ext]'
           ]
         }
       }
@@ -134,7 +135,7 @@ module.exports = {
 
     // Put all css code in this file
     new ExtractTextPlugin({
-      filename: '[name].[contenthash].css',
+      filename: '[name].[contenthash:8].css',
       allChunks: true
     })
   ]
