@@ -1,17 +1,17 @@
-# ES6 + Babel + Webpack 2 starter
+# ES6 + Babel + Webpack 3 starter
 
-I have build this boilerplate following the Webpack 2 documentation which is great.
+I have build this boilerplate following the Webpack 3 documentation which is great.
 
 Why another boilerplate?
 
 The answer is simple. I wanted to go through the whole process of setting up my environment to build
 awesome web apps and be able to understand every single piece of a boilerplate config. That's why I
-decided to build my own. I'm very thankful to the new Webpack 2 documentation which has helped me a lot.
+decided to build my own. I'm very thankful to the new Webpack 3 documentation which has helped me a lot.
 
 This starter kit comes with:
 
 - [Yarn](https://yarnpkg.com/): A fast dependency manager
-- [Webpack 2](https://webpack.js.org) setup for [production](./config/webpack.prod.js) and [development](./config/webpack.dev.js) environments
+- [Webpack 3](https://webpack.js.org) setup for [production](./config/webpack.prod.js) and [development](./config/webpack.dev.js) environments
 - Live reload with [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 - [Babeljs](https://babeljs.io/) to compile next generation JavaScript
 - [HTML Webpack Plugin](https://github.com/ampedandwired/html-webpack-plugin): Especially useful for webpack bundles that include a hash in the filename which changes every compilation. With this plugin you write a [HTML template](./src/index.html) and the plugin takes care of inserting the `.js` and `.css` script for you whenever your code changes and gets compiled.
