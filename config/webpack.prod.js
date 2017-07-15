@@ -8,6 +8,7 @@ const autoprefixer = require('autoprefixer')
 
 const srcDir = path.resolve(__dirname, '..', 'src')
 const distDir = path.resolve(__dirname, '..', 'dist')
+const { NODE_ENV = 'development' } = process.env
 
 module.exports = {
   // Where to fine the source code
@@ -95,10 +96,14 @@ module.exports = {
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.HashedModuleIdsPlugin(),
 
+    // environment globals added must be added to .eslintrc
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
+        'NODE_ENV': JSON.stringify(NODE_ENV)
+      },
+      'NODE_ENV': NODE_ENV,
+      '__DEV__': NODE_ENV === 'development',
+      '__PROD__': NODE_ENV === 'production'
     }),
 
     new webpack.LoaderOptionsPlugin({

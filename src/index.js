@@ -2,6 +2,11 @@ import './styles/core.scss'
 
 import jsImg from './assets/js.png'
 
+// gonna be removed in production
+if (__DEV__) {
+  console.log('log log log log')
+}
+
 const page = `
 <div class="main">
   <h1>ES6 + Webpack 2 starter</h1>
