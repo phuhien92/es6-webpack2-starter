@@ -77,18 +77,16 @@ module.exports = {
       },
       {
         test: /\.(eot?.+|svg?.+|ttf?.+|otf?.+|woff?.+|woff2?.+)$/,
-        use: 'file-loader?name=assets/[name]-[hash:8].[ext]'
+        use: 'file-loader?name=assets/[name].[hash:8].[ext]'
       },
       {
         test: /\.(jpg|jpeg|png|gif|ico|svg)$/,
-        loader: 'url-loader',
-        query: {
-          // if less, bundle the asset inline, if greater, copy it to the dist/assets
+        use: [
+          // if less than 10Kb, bundle the asset inline, if greater, copy it to the dist/assets
           // folder using file-loader
-          use: [
-            'url-loader?limit=10240&name=assets/[name]-[hash:8].[ext]'
-          ]
-        }
+          'url-loader?limit=10240&name=assets/[name].[hash:8].[ext]'
+        ],
+        include: path.resolve(srcDir, 'assets')
       }
     ]
   },
@@ -143,7 +141,7 @@ module.exports = {
           autoprefixer({
             browsers: [
               'last 3 version',
-              'ie >= 10'
+              'ie >= 10' // supports IE from version 10 onwards
             ]
           })
         ],
