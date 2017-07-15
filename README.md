@@ -84,3 +84,11 @@ Pull requests are very welcome!
   - [Better, Simpler Grid Systems](https://philipwalton.github.io/solved-by-flexbox/demos/grids/)
   - [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 - Maybe? add sass suport with `node-sass` and `sass-loader`. I put *Maybe?* because I intent to use only vanilla JS and CSS in this project.
+
+### Very Helpful resources
+
+[webpack](https://webpack.js.org/)
+[The PRPL Pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/)
+[Webpack 3 + React — Production build tips](https://medium.com/netscape/webpack-3-react-production-build-tips-d20507dba99a)
+[nwb](https://github.com/insin/nwb)
+[On Webpack and Source Map integration](https://lorefnon.me/2016/12/03/on-webpack-and-source-map-integration.html)

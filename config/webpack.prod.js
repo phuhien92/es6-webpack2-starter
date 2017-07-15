@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
+const PreloadWebpackPlugin = require('preload-webpack-plugin')
 
 const srcDir = path.resolve(__dirname, '..', 'src')
 const distDir = path.resolve(__dirname, '..', 'dist')
@@ -143,6 +144,12 @@ module.exports = {
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
       threshold: 10240 // Only assets bigger than this size are processed
+    }),
+
+    new PreloadWebpackPlugin({
+      rel: 'preload',
+      as: 'script',
+      include: 'all'
     })
   ]
 }
