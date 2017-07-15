@@ -73,15 +73,6 @@ module.exports = {
         test: /\.(eot?.+|svg?.+|ttf?.+|otf?.+|woff?.+|woff2?.+)$/,
         use: 'file-loader?name=assets/[name]-[hash:8].[ext]'
       },
-      // {
-      //   test: /\.css$/,
-      //   exclude: /node_modules/,
-      //   // It's production mode and I don't want inline CSS so put all my CSS into a file
-      //   loader: ExtractTextPlugin.extract({
-      //     fallbackLoader: 'style-loader',
-      //     loader: 'css-loader'
-      //   })
-      // },
       {
         test: /\.(jpg|jpeg|png|gif|ico|svg)$/,
         loader: 'url-loader',
@@ -89,7 +80,7 @@ module.exports = {
           // if less, bundle the asset inline, if greater, copy it to the dist/assets
           // folder using file-loader
           use: [
-            'url-loader?limit=20480&name=assets/[name]-[hash:8].[ext]'
+            'url-loader?limit=10000&name=assets/[name]-[hash:8].[ext]'
           ]
         }
       }
@@ -97,7 +88,8 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.NamedModulesPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.HashedModuleIdsPlugin(),
 
     new webpack.DefinePlugin({
       'process.env': {
@@ -122,15 +114,21 @@ module.exports = {
     }),
 
     new webpack.optimize.UglifyJsPlugin({
-      beautify: false,
-      mangle: {
-        screw_ie8: true,
-        keep_fnames: true
-      },
       compress: {
-        screw_ie8: true
+        warnings: false,
+        screw_ie8: true,
+        conditionals: true,
+        unused: true,
+        comparisons: true,
+        sequences: true,
+        dead_code: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true
       },
-      comments: false
+      output: {
+        comments: false
+      }
     }),
 
     // Put all css code in this file
