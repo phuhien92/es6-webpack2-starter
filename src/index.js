@@ -9,7 +9,7 @@ if (__DEV__) {
 
 const page = `
 <div class="main">
-  <h1>ES6 + Webpack 2 starter</h1>
+  <h1>ES6 + Webpack starter</h1>
   <div>
     <img src="${jsImg}" alt="JavaScript"/>
   </div>
