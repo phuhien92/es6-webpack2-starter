@@ -4,12 +4,12 @@
   "description": "A starter project to work with vanilla ES6 using Babel and Webpack",
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:paulochavesbr/paulo_chaves.git"
+    "url": "git@github.com:oPauloChaves/es6-webpack2-starter.git"
   },
   "author": "Paulo Chaves <opaulochaves@mail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=6"
+    "node": ">=7.6"
   },
   "scripts": {
     "clean": "rimraf dist",
@@ -28,13 +28,18 @@
     "babel-preset-stage-0": "^6.24.1",
     "compression-webpack-plugin": "^0.4.0",
     "css-loader": "^0.28.0",
-    "eslint": "^4.2.0",
+    "eslint": "^4.6.1",
+    "eslint-config-prettier": "^2.4.0",
     "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-babel": "^4.1.1",
+    "eslint-config-standard-react": "^5.0.0",
+    "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.1.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-prettier": "^2.2.0",
     "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.3.0",
     "eslint-plugin-standard": "^3.0.1",
+    "prettier": "^1.6.1",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "handlebars": "^3.0.3",

@@ -108,7 +108,7 @@ module.exports = {
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.HashedModuleIdsPlugin(),
 
-    // environment globals added must be added to .eslintrc
+    // environment globals added must be added to .eslintrc.json
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(NODE_ENV)
