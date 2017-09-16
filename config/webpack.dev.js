@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const srcDir = path.resolve(__dirname, '..', 'src')
 const distDir = path.resolve(__dirname, '..', 'dist')
-const { NODE_ENV = 'development' } = process.env
+const {NODE_ENV = 'development'} = process.env
 
 module.exports = {
   // Where to fine the source code
@@ -13,9 +13,7 @@ module.exports = {
   // No source map for production build
   devtool: 'source-map',
 
-  entry: [
-    './index.js'
-  ],
+  entry: ['./index.js'],
 
   output: {
     // The destination file name concatenated with hash (generated whenever you change your code).
@@ -32,7 +30,7 @@ module.exports = {
 
     // At some point you'll have to debug your code, that's why I'm giving you
     // for free a source map file to make your life easier
-    sourceMapFilename: 'main.map'
+    sourceMapFilename: 'main.map',
   },
 
   devServer: {
@@ -41,7 +39,7 @@ module.exports = {
     publicPath: '/',
     // match the output `publicPath`
     historyApiFallback: true,
-    port: 3000
+    port: 3000,
   },
 
   module: {
@@ -51,10 +49,8 @@ module.exports = {
         // the code to ES5. I don't want you to look into the node_modules folder.
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [
-          'babel-loader'
-        ],
-        include: srcDir
+        use: ['babel-loader'],
+        include: srcDir,
       },
       {
         test: /\.scss$/,
@@ -65,40 +61,40 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [require('autoprefixer')({
-                browsers: [
-                  'last 3 version',
-                  'ie >= 10' // supports IE from version 10 onwards
-                ]
-              })]
-            }
+              plugins: () => [
+                require('autoprefixer')({
+                  browsers: [
+                    'last 3 version',
+                    'ie >= 10', // supports IE from version 10 onwards
+                  ],
+                }),
+              ],
+            },
           },
-          'sass-loader'
-        ]
+          'sass-loader',
+        ],
       },
       {
         test: /\.hbs$/,
         loader: 'handlebars-loader',
         query: {
-          partialDirs: [
-            path.join(srcDir, 'templates', 'partials')
-          ]
-        }
+          partialDirs: [path.join(srcDir, 'templates', 'partials')],
+        },
       },
       {
         test: /\.(eot?.+|svg?.+|ttf?.+|otf?.+|woff?.+|woff2?.+)$/,
-        use: 'file-loader?name=assets/[name].[ext]'
+        use: 'file-loader?name=assets/[name].[ext]',
       },
       {
         test: /\.(jpg|jpeg|png|gif|ico|svg)$/,
         use: [
           // if less than 10Kb, bundle the asset inline, if greater, copy it to the dist/assets
           // folder using file-loader
-          'url-loader?limit=10240&name=assets/[name].[ext]'
+          'url-loader?limit=10240&name=assets/[name].[ext]',
         ],
-        include: path.resolve(srcDir, 'assets')
-      }
-    ]
+        include: path.resolve(srcDir, 'assets'),
+      },
+    ],
   },
 
   plugins: [
@@ -107,11 +103,11 @@ module.exports = {
     // environment globals added must be added to .eslintrc
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify(NODE_ENV)
+        NODE_ENV: JSON.stringify(NODE_ENV),
       },
-      'NODE_ENV': NODE_ENV,
-      '__DEV__': NODE_ENV === 'development',
-      '__PROD__': NODE_ENV === 'production'
+      NODE_ENV: NODE_ENV,
+      __DEV__: NODE_ENV === 'development',
+      __PROD__: NODE_ENV === 'production',
     }),
 
     new HtmlWebpackPlugin({
@@ -122,7 +118,7 @@ module.exports = {
       path: distDir,
 
       // the output file name
-      filename: 'index.html'
-    })
-  ]
+      filename: 'index.html',
+    }),
+  ],
 }
