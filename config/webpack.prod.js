@@ -3,7 +3,8 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
-const PreloadWebpackPlugin = require('preload-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const srcDir = path.resolve(__dirname, '..', 'src')
 const distDir = path.resolve(__dirname, '..', 'dist')
@@ -156,11 +157,15 @@ module.exports = {
       threshold: 10240, // Only assets bigger than this size are processed
     }),
 
-    new PreloadWebpackPlugin({
-      rel: 'preload',
-      as: 'script',
-      include: 'all',
-      fileBlacklist: [/\.(css|map)$/],
+    new CopyWebpackPlugin([
+      {from: `${srcDir}/images`, to: `${distDir}/images`},
+      {from: `${srcDir}/manifest.json`},
+    ]),
+
+    new WorkboxPlugin({
+      globDirectory: distDir,
+      globPatterns: ['**/*.{html,js,css}'],
+      swDest: path.join(distDir, 'sw.js'),
     }),
   ],
 }

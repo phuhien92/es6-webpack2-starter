@@ -1,4 +1,4 @@
-# ES6 + Babel + Webpack starter
+# Boilerplate to build a PWA with Webpack + Workbox
 
 I have build this boilerplate following the Webpack documentation which is great.
 
@@ -12,6 +12,7 @@ This starter kit comes with:
 
 - [Yarn](https://yarnpkg.com/): A fast dependency manager
 - [Webpack](https://webpack.js.org) setup for [production](./config/webpack.prod.js) and [development](./config/webpack.dev.js) environments
+- [Workbox](https://workboxjs.org/): JavaScript Libraries for Progressive Web Apps
 - Live reload with [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 - [Babeljs](https://babeljs.io/) to compile next generation JavaScript
 - [HTML Webpack Plugin](https://github.com/ampedandwired/html-webpack-plugin): Especially useful for webpack bundles that include a hash in the filename which changes every compilation. With this plugin you write a [HTML template](./src/index.html) and the plugin takes care of inserting the `.js` and `.css` script for you whenever your code changes and gets compiled.
@@ -93,3 +94,4 @@ Pull requests are very welcome!
 [nwb](https://github.com/insin/nwb)
 [On Webpack and Source Map integration](https://lorefnon.me/2016/12/03/on-webpack-and-source-map-integration.html)
 [Conditional compilation and dead code elimination with webpack](https://www.thomann.io/blog/post/webpack_conditional_compilation_dead_code_elimination)
+[Web App Manifest Generator](https://app-manifest.firebaseapp.com/)
