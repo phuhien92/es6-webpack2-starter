@@ -8,7 +8,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const srcDir = path.resolve(__dirname, '..', 'src')
 const distDir = path.resolve(__dirname, '..', 'dist')
-const {NODE_ENV = 'development'} = process.env
+const {NODE_ENV = 'production'} = process.env
 
 module.exports = {
   // Where to fine the source code
@@ -57,7 +57,7 @@ module.exports = {
               loader: 'css-loader',
               options: {
                 minimize: true,
-                modules: true,
+                modules: false,
                 sourceMap: true,
               },
             },
@@ -135,13 +135,6 @@ module.exports = {
     new ExtractTextPlugin({
       filename: '[name].[contenthash:8].css',
     }),
-
-    // new CompressionPlugin({
-    //   asset: '[path].gz[query]',
-    //   algorithm: 'gzip',
-    //   test: /\.js$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
-    //   threshold: 10240, // Only assets bigger than this size are processed
-    // }),
 
     new CopyWebpackPlugin([
       {from: `${srcDir}/images`, to: `${distDir}/images`},

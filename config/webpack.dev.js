@@ -39,6 +39,7 @@ module.exports = {
     // match the output `publicPath`
     historyApiFallback: true,
     port: 3000,
+    hot: true,
   },
 
   module: {
@@ -56,7 +57,13 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           'style-loader',
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: false,
+              sourceMap: true,
+            },
+          },
           {
             loader: 'postcss-loader',
             options: {

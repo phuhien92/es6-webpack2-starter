@@ -2,8 +2,10 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 
 import './styles/core.scss'
+import classes from './app.scss'
 import jsImg from './assets/js.png'
 
+console.log(classes)
 // gonna be removed in production
 if (__DEV__) {
   console.log('log log log log')
