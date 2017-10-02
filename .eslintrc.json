@@ -1,11 +1,6 @@
 {
-  "plugins": [
-    "prettier"
-  ],
-  "extends": [
-    "prettier",
-    "standard"
-  ],
+  "plugins": ["prettier"],
+  "extends": ["prettier", "standard", "standard-react"],
   "env": {
     "browser": true
   },
@@ -19,13 +14,16 @@
     "react/prop-types": "off",
     "space-before-function-paren": "off",
     "comma-dangle": ["error", "always-multiline"],
-    "prettier/prettier": ["error", {
-      "singleQuote": true,
-      "printWidth": 100,
-      "semi": false,
-      "trailingComma": "all",
-      "bracketSpacing": false,
-      "jsxBracketSameLine": true
-    }]
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "printWidth": 100,
+        "semi": false,
+        "trailingComma": "all",
+        "bracketSpacing": false,
+        "jsxBracketSameLine": true
+      }
+    ]
   }
 }

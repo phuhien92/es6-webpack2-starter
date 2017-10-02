@@ -24,12 +24,14 @@
     "babel-core": "^7.0.0-beta.1",
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^2.0.0-beta.1",
+    "babel-preset-react": "^7.0.0-beta.2",
     "compression-webpack-plugin": "^0.4.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "eslint": "^4.6.1",
     "eslint-config-prettier": "^2.4.0",
     "eslint-config-standard": "^10.2.1",
+    "eslint-config-standard-react": "^5.0.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-prettier": "^2.2.0",
@@ -37,8 +39,6 @@
     "eslint-plugin-standard": "^3.0.1",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
-    "handlebars": "^3.0.3",
-    "handlebars-loader": "^1.5.0",
     "html-webpack-plugin": "^2.29.0",
     "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.6",
@@ -52,7 +52,9 @@
     "workbox-webpack-plugin": "^2.0.2-rc1"
   },
   "dependencies": {
-    "normalize.css": "^7.0.0"
+    "normalize.css": "^7.0.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "prettier": {
     "singleQuote": true,

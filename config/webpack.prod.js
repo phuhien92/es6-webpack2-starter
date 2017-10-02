@@ -15,7 +15,7 @@ module.exports = {
   context: srcDir,
 
   // No source map for production build
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
 
   entry: ['./index.js'],
 
@@ -67,9 +67,12 @@ module.exports = {
                 plugins: () => [
                   require('autoprefixer')({
                     browsers: [
-                      'last 3 version',
-                      'ie >= 10', // supports IE from version 10 onwards
+                      '>1%',
+                      'last 4 versions',
+                      'Firefox ESR',
+                      'not ie < 9', // React doesn't support IE8 anyway
                     ],
+                    flexbox: 'no-2009',
                   }),
                 ],
               },
@@ -77,13 +80,6 @@ module.exports = {
             'sass-loader',
           ],
         }),
-      },
-      {
-        test: /\.hbs$/,
-        loader: 'handlebars-loader',
-        query: {
-          partialDirs: [path.join(srcDir, 'templates', 'partials')],
-        },
       },
       {
         test: /\.(eot?.+|svg?.+|ttf?.+|otf?.+|woff?.+|woff2?.+)$/,
@@ -102,22 +98,9 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.HashedModuleIdsPlugin(),
-
-    // environment globals added must be added to .eslintrc.json
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(NODE_ENV),
-      },
-      NODE_ENV: NODE_ENV,
-      __DEV__: NODE_ENV === 'development',
-      __PROD__: NODE_ENV === 'production',
-    }),
-
     new HtmlWebpackPlugin({
-      // where to find the handlebars template
-      template: path.join(srcDir, 'index.hbs'),
+      // where to find the html template
+      template: path.join(srcDir, 'index.html'),
 
       // where to put the generated file
       path: distDir,
@@ -126,36 +109,39 @@ module.exports = {
       filename: 'index.html',
     }),
 
+    // environment globals added must be added to .eslintrc.json
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
+      NODE_ENV: NODE_ENV,
+      __DEV__: NODE_ENV === 'development',
+      __PROD__: NODE_ENV === 'production',
+    }),
+
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
-        screw_ie8: true,
         conditionals: true,
-        unused: true,
-        comparisons: true,
-        sequences: true,
-        dead_code: true,
-        evaluate: true,
-        if_return: true,
-        join_vars: true,
+        comparisons: false,
       },
       output: {
         comments: false,
+        ascii_only: true,
       },
     }),
 
     // Put all css code in this file
     new ExtractTextPlugin({
       filename: '[name].[contenthash:8].css',
-      allChunks: true,
     }),
 
-    new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.js$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
-      threshold: 10240, // Only assets bigger than this size are processed
-    }),
+    // new CompressionPlugin({
+    //   asset: '[path].gz[query]',
+    //   algorithm: 'gzip',
+    //   test: /\.js$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
+    //   threshold: 10240, // Only assets bigger than this size are processed
+    // }),
 
     new CopyWebpackPlugin([
       {from: `${srcDir}/images`, to: `${distDir}/images`},
