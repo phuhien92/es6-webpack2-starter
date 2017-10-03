@@ -1,41 +1,8 @@
 :global {
-  @import "base";
-  @import "device-sizes";
-  @import "standard-classes";
+  @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
   @import "~normalize.css/normalize";
-
-  // Some best-practice CSS that's useful for most apps
-  // Just remove them if they're not what you want
-  html {
-    box-sizing: border-box;
-  }
-
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background-color: $background;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-    @include desktop {
-      font-size: 15px;
-    }
-
-
-    @include mobile {
-      font-size: 12px;
-    }
-  }
-
-  a {
-    text-decoration: none !important;
-
-    &:visited {
-      text-decoration: none;
-      color: inherit;
-    }
-  }
+  @import "base";
 
   *,
   *:before,
@@ -43,7 +10,16 @@
     box-sizing: inherit;
   }
 
-  [type=button] {
-    -webkit-appearance: none !important;
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: $background;
+
+    @include md-screen {
+      font-size: 16px;
+    }
   }
 }

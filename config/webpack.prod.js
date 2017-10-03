@@ -6,8 +6,9 @@ const CompressionPlugin = require('compression-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const srcDir = path.resolve(__dirname, '..', 'src')
-const distDir = path.resolve(__dirname, '..', 'dist')
+const rootDir = path.resolve(__dirname, '..')
+const srcDir = path.resolve(rootDir, 'src')
+const distDir = path.resolve(rootDir, 'dist')
 const {NODE_ENV = 'production'} = process.env
 
 module.exports = {
@@ -139,11 +140,19 @@ module.exports = {
     new CopyWebpackPlugin([
       {from: `${srcDir}/images`, to: `${distDir}/images`},
       {from: `${srcDir}/manifest.json`},
+      {
+        from: `${rootDir}/node_modules/workbox-sw/build/importScripts/workbox-sw.prod.v2.0.2-rc1-2.0.2-rc1.0.js`,
+      },
+      {
+        from: `${rootDir}/node_modules/workbox-sw/build/importScripts/workbox-sw.prod.v2.0.2-rc1-2.0.2-rc1.0.js.map`,
+      },
     ]),
 
     new WorkboxPlugin({
       globDirectory: distDir,
       globPatterns: ['**/*.{html,js,css}'],
+      globIgnores: ['workbox-sw.prod.*.js'],
+      swSrc: path.join(srcDir, 'sw.js'),
       swDest: path.join(distDir, 'sw.js'),
     }),
   ],
