@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './app.scss'
+import classes from './app.scss'
 
 class App extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="main">
+      <div className={classes.main}>
         <h1>ES6 + Webpack starter</h1>
         <h2>Paulo Chaves from Piaui, Brazil</h2>
       </div>
